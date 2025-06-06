@@ -1,8 +1,7 @@
 import React, { useState } from "react"
 import AuthLayout from "../../components/layout/AuthLayout"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import Input from "../../components/layout/inputs/Input"
-import { Link } from "react-router-dom"
 import { validateEmail } from "../../utils/helper"
 
 const Login = () => {
@@ -21,7 +20,7 @@ const Login = () => {
       return
     }
     if (!password) {
-      setError("Please enter a valid email address.")
+      setError("Please enter a password.")
       return
     }
 
@@ -38,7 +37,7 @@ const Login = () => {
           Please enter your details to login
         </p>
 
-        <form action="" onSubmit={handleLogin}>
+        <form onSubmit={handleLogin}>
           <Input
             value={email}
             onChange={({ target }) => setEmail(target.value)}
