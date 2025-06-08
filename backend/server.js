@@ -24,9 +24,6 @@ connectBD()
 
 app.use("/api/v1/auth", authRoutes)
 
-app.get("/", (req, res) => {
-  res.json("<h1>Hello World!</h1>")
-})
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)
 })
