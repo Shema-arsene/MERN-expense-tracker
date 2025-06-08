@@ -24,6 +24,9 @@ connectBD()
 
 app.use("/api/v1/auth", authRoutes)
 
+// Server uploads folder
+app.use("/uploads", express.static(path.join(__dirname, "uploads")))
+
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)
 })
