@@ -15,7 +15,7 @@ exports.addIncome = async (req, res) => {
     }
 
     const newIcome = new Income({
-      //   userId,
+      userId,
       icon,
       source,
       amount,
