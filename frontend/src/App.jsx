@@ -14,20 +14,23 @@ import Signup from "./pages/Auth/Signup.jsx"
 import Home from "./pages/Dashboard/Home.jsx"
 import Income from "./pages/Dashboard/Income.jsx"
 import Expenses from "./pages/Dashboard/Expenses.jsx"
+import UserProvider from "./context/userContext.jsx"
 
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Root />} />
-          <Route path="/login" exact element={<Login />} />
-          <Route path="/Signup" exact element={<Signup />} />
-          <Route path="/dashboard" exact element={<Home />} />
-          <Route path="/income" exact element={<Income />} />
-          <Route path="/expenses" exact element={<Expenses />} />
-        </Routes>
-      </Router>
+      <UserProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Root />} />
+            <Route path="/login" exact element={<Login />} />
+            <Route path="/Signup" exact element={<Signup />} />
+            <Route path="/dashboard" exact element={<Home />} />
+            <Route path="/income" exact element={<Income />} />
+            <Route path="/expenses" exact element={<Expenses />} />
+          </Routes>
+        </Router>
+      </UserProvider>
     </>
   )
 }
