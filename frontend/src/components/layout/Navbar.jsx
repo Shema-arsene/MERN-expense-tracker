@@ -17,19 +17,21 @@ const Navbar = ({ activeMenu }) => {
         }}
       >
         {openSideMenu ? (
-          <HiOutlineX className="cursor-pointer text-3xl hover:bg-red-100 rounded-full p-1" />
+          <HiOutlineX className="cursor-pointer text-3xl hover:text-red-500 rounded-full p-1" />
         ) : (
-          <HiOutlineMenu className="cursor-pointer text-3xl hover:bg-green-100 rounded-full p-1" />
+          <HiOutlineMenu className="cursor-pointer text-3xl hover:text-green-500 rounded-full p-1" />
         )}
       </button>
 
       <h2 className="text-lg font-medium text-black">Expense tracker</h2>
 
-      {openSideMenu && (
-        <div className="fixed top-[61px] -ml-4 bg-white">
-          <SideMenu activeMenu={activeMenu} />
-        </div>
-      )}
+      <div
+        className={`${
+          openSideMenu ? "translate-x-[0]" : "-translate-x-[100%]"
+        } fixed top-[65px] -ml-7 bg-white duration-1000`}
+      >
+        <SideMenu activeMenu={activeMenu} />
+      </div>
     </nav>
   )
 }
