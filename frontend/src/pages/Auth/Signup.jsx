@@ -6,7 +6,7 @@ import { validateEmail } from "../../utils/helper"
 import ProfilePhotoSelector from "../../components/inputs/ProfilePhotoSelector"
 import axiosinstance from "../../utils/axiosinstance"
 import { API_PATHS } from "../../utils/apiPaths"
-import { userContext } from "../../context/userContext"
+import { UserContext } from "../../context/userContext"
 import uploadImage from "../../utils/uploadImage"
 
 const Signup = () => {
@@ -17,7 +17,7 @@ const Signup = () => {
 
   const [error, setError] = useState(null)
 
-  const { updateUser } = useContext(userContext)
+  const { updateUser } = useContext(UserContext)
   const navigate = useNavigate()
 
   // Handle Signup form submit
