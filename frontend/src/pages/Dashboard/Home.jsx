@@ -9,6 +9,7 @@ import { IoMdCard } from "react-icons/io"
 import { LuHandCoins, LuWalletMinimal } from "react-icons/lu"
 import { addThousandsSeparator } from "../../utils/helper"
 import RecentTransactions from "../../components/dashboard/RecentTransactions"
+import FinancialOverview from "../../components/dashboard/FinancialOverview"
 
 const Home = () => {
   useUserAuth()
@@ -48,29 +49,29 @@ const Home = () => {
       <div className="my-5 mx-auto">
         <div className="my-5 grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Total Balance */}
-          <InfoCard
+          {/* <InfoCard
             icon={<IoMdCard />}
             label="Total Balance"
             value={addThousandsSeparator(dashboardData?.totalBalance || 0)}
             color="bg-violet-500"
-          />
+          /> */}
 
           {/* Total Income */}
-          <InfoCard
+          {/* <InfoCard
             icon={<LuWalletMinimal />}
             label="Total Income"
             value={addThousandsSeparator(dashboardData?.totalIncome || 0)}
             color="bg-orange-500"
-          />
+          /> */}
 
           {/* Total Expenses */}
 
-          <InfoCard
+          {/* <InfoCard
             icon={<LuHandCoins />}
             label="Total Expenses"
             value={addThousandsSeparator(dashboardData?.totalExpense || 0)}
             color="bg-red-500"
-          />
+          /> */}
         </div>
 
         {/* Recent transaction */}
@@ -78,6 +79,12 @@ const Home = () => {
           <RecentTransactions
             transactions={dashboardData?.recentTransactions}
             onSeeMore={() => navigate("/expense")}
+          />
+
+          <FinancialOverview
+            totalBalance={dashboardData?.totalBalance || 0}
+            totalIncome={dashboardData?.totalIncome || 0}
+            totalExpense={dashboardData?.totalExpense || 0}
           />
         </div>
       </div>

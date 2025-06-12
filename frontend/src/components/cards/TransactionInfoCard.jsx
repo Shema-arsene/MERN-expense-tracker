@@ -17,7 +17,7 @@ const TransactionInfoCard = ({
   const getAmountStyles = () =>
     type == "income" ? "bg-green-50 text-green-500" : "bg-red-50 text-red-500"
 
-  console.log("Transaction type:", type)
+  //   console.log("Transaction type:", type)
 
   return (
     <div className="group relative flex items-center gap-4 mt-2 p-3 rounded-lg hover:bg-gray-200/60">
