@@ -12,6 +12,8 @@ import IncomeList from "../../components/income/IncomeList"
 import DeleteAlert from "../../components/DeleteAlert"
 
 const Income = () => {
+  useUserAuth()
+
   const [incomeData, setIncomeData] = useState([])
   const [loading, setLoading] = useState(false)
   const [openDeleteAlert, setOpenDeleteAlert] = useState({
@@ -21,8 +23,6 @@ const Income = () => {
   const [openAddIncomeModal, setOpenAddIncomeModal] = useState(false)
 
   // Get all income details
-  // useUserAuth()
-  // const navigate = useNavigate()
 
   const fetchIncomeDetails = async () => {
     if (loading) return
