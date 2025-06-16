@@ -98,7 +98,29 @@ const Income = () => {
   }
 
   // Handle download income details
-  const handleDownloadIncomeDetails = async (id) => {}
+  const handleDownloadIncomeDetails = async () => {
+    try {
+      const response = await axiosinstance.get(
+        API_PATHS.INCOME.DOWNLOAD_INCOME,
+        {
+          responseType: "blob",
+        }
+      )
+
+      // Create a URL for the blob
+      const url = window.URL.createObjectURL(new Blob([response.data]))
+      const link = document.createElement("a")
+      link.href = url
+      link.setAttribute("download", "income_detail.xlsx")
+      document.body.appendChild(link)
+      link.click()
+      link.parentNode.removeChild(link)
+      window.URL.revokeObjectURL(url)
+    } catch (error) {
+      console.error("Error downloading income details: ", error)
+      toast.error("Failed to download income details. Please try again")
+    }
+  }
 
   useEffect(() => {
     fetchIncomeDetails()
@@ -121,7 +143,7 @@ const Income = () => {
           <IncomeList
             transactions={incomeData}
             onDelete={(id) => setOpenDeleteAlert({ show: true, data: id })}
-            onDownload={() => handleDownloadIncomeDetails}
+            onDownload={handleDownloadIncomeDetails}
           />
         </div>
 
