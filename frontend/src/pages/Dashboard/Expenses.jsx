@@ -7,6 +7,8 @@ import axiosinstance from "../../utils/axiosinstance"
 import ExpenseOverview from "../../components/expense/ExpenseOverview"
 import Modal from "../../components/Modal"
 import AddExpenseForm from "../../components/expense/AddExpenseForm"
+import ExpenseList from "../../components/expense/ExpenseList"
+import DeleteAlert from "../../components/DeleteAlert"
 
 const Expenses = () => {
   useUserAuth()
@@ -77,6 +79,25 @@ const Expenses = () => {
     }
   }
 
+  // Delete expense
+  const deleteExpense = async (id) => {
+    try {
+      await axiosinstance.delete(API_PATHS.EXPENSE.DELETE_EXPENSE(id))
+
+      setOpenDeleteAlert({ show: false, data: null })
+      toast.success("Expense details deleted successfully")
+      fetchExpenseDetails()
+    } catch (error) {
+      console.error(
+        "Error deleting expense: ",
+        error.response?.data?.message || error.message
+      )
+    }
+  }
+
+  // Handle download expense details
+  const handleDownloadExpenseDetails = async (id) => {}
+
   useEffect(() => {
     fetchExpenseDetails()
 
@@ -93,6 +114,17 @@ const Expenses = () => {
               onExpenseIncome={() => setOpenAddExpenseModal(true)}
             />
           </div>
+
+          <ExpenseList
+            transactions={expenseData}
+            onDelete={(id) => {
+              setOpenDeleteAlert({
+                show: true,
+                data: id,
+              })
+            }}
+            onDownload={handleDownloadExpenseDetails}
+          />
         </div>
 
         <Modal
@@ -101,6 +133,17 @@ const Expenses = () => {
           title="Add Expense"
         >
           <AddExpenseForm onAddExpense={handleAddExpense} />
+        </Modal>
+
+        <Modal
+          isOpen={openDeleteAlert.show}
+          onClose={() => setOpenDeleteAlert({ show: false, data: null })}
+          title="Delete Expense"
+        >
+          <DeleteAlert
+            content="Are you sure you want to delete this expense datail?"
+            onDelete={() => deleteExpense(openDeleteAlert.data)}
+          />
         </Modal>
       </div>
     </DashboardLayout>
