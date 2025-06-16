@@ -14,7 +14,7 @@ import Signup from "./pages/Auth/Signup.jsx"
 import Home from "./pages/Dashboard/Home.jsx"
 import Income from "./pages/Dashboard/Income.jsx"
 import Expenses from "./pages/Dashboard/Expenses.jsx"
-import UserProvider from "./context/userContext.jsx"
+import UserProvider from "./UserContext.jsx"
 import Toaster from "react-hot-toast"
 
 function App() {
